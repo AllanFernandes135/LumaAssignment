@@ -5,6 +5,7 @@ Tools used
 2)TestNG
 3)Java
 4)Intellij
+5)Selenium
 
 ChromeDriver version used in the  project is 134.0.6998.165 
 1) In case the machine the script is getting executed on has lower/higher version of chrome , 
