@@ -10,9 +10,9 @@ Feature: Home
 #  Scenario: To Verify user is navigated to 'Customer Login'  section on clicking  'Sign in'
 #    When I navigate to  luma home page
 #    And I click on the "Sign In" link
-#    Then I should see "Customer Login" header displayed
+#   Then I should see "Customer Login" header displayed/
 
-    @Test01
+#    @Test01
   Scenario: To Verify user is navigated to 'Create New Customer Account'  section on clicking  'Create an Account'
     When I navigate to  luma home page
     And I click on the "Create an Account" link
