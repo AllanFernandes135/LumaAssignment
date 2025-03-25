@@ -8,21 +8,21 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import runner.ScriptRunner;
 
 import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
-public class HomeSteps {
-    WebDriver driver = new ChromeDriver(); ;
+public class HomeSteps extends ScriptRunner { ;
     final String url = "https://magento.softwaretestingboard.com/";
+
     Duration wait = Duration.ofSeconds(10);
+
     WebDriverWait webDriverWaiting = new WebDriverWait(driver, wait);
 
     @When("I navigate to  luma home page")
     public void iNavigateToLumaHomePage() {
         try {
-            System.setProperty("webdriver.chrome.driver", "src/main/resources/chromeDriver/chromedriver.exe");
-            driver.manage().window().maximize();
             driver.navigate().to(url);
             driver.manage().timeouts().implicitlyWait(6, TimeUnit.SECONDS);
         }
@@ -43,6 +43,9 @@ public class HomeSteps {
                     break;
                 case "Create New Customer Account":
                     webDriverWaiting.until(ExpectedConditions.presenceOfElementLocated(new By.ByXPath("//span[text()=\"Create New Customer Account\"]")));
+                    break;
+                case "My Account":
+                    webDriverWaiting.until(ExpectedConditions.presenceOfElementLocated(new By.ByXPath("//span[text()=\"My Account\"]")));
                     break;
             }
         }
