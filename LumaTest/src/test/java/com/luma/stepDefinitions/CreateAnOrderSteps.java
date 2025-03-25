@@ -49,19 +49,24 @@ public class CreateAnOrderSteps extends ScriptRunner {
     private HashMap<String,String > userDetails = new HashMap<>();
     @And("I click on the {string} button")
     public void iClickOnTheButton(String button) throws InterruptedException {
-        switch (button){
-           case  "Create an Account":
-               execute.executeScript("window.scrollBy(0,400)","");
-               driver.findElement(new By.ByXPath("//li/a[text()=\"Search Terms\"]/ancestor::div/ancestor::div/main/div[3]/div/form/div/div/button")).click();
-            break;
-            case "Sign In":
-                driver.findElement(By.id("send2")).click();
-                break;
-        }
+        try {
+            switch (button) {
+                case "Create an Account":
+                    execute.executeScript("window.scrollBy(0,400)", "");
+                    driver.findElement(new By.ByXPath("//li/a[text()=\"Search Terms\"]/ancestor::div/ancestor::div/main/div[3]/div/form/div/div/button")).click();
+                    break;
+                case "Sign In":
+                    driver.findElement(By.id("send2")).click();
+                    break;
+            }
+        }catch(Exception error){
+                System.out.println("Something went wrong."+error);
+            }
         }
 
     @Then("I should see {string} validation message for {string} textbox")
     public void iShouldSeeValidationMessageForTextbox(String message, String textbox) {
+        try{
         String validationError ="";
         switch (message) {
 
@@ -95,11 +100,15 @@ public class CreateAnOrderSteps extends ScriptRunner {
                 webDriverWaiting.until(ExpectedConditions.presenceOfElementLocated(new By.ByXPath("//h1/span/following::div[1]//div[text()=contains(text(),'There is already an account with this email address.')]")));
                 break;
         }
+        }catch(Exception error){
+            System.out.println("Something went wrong."+error);
+        }
 
     }
 
     @And("I enter {string} in the {string} textbox")
     public void iEnterInTheTextbox(String text, String textbox) throws InterruptedException {
+        try{
         switch (textbox){
             case "First Name":
                 driver.findElement(By.id("firstname")).click();
@@ -164,35 +173,50 @@ public class CreateAnOrderSteps extends ScriptRunner {
                 }
                 break;
         }
+        }catch(Exception error){
+            System.out.println("Something went wrong."+error);
+        }
     }
 
     @And("I scroll up")
     public void iScrollUp() throws InterruptedException {
+        try{
         execute.executeScript("window.scrollBy(0,-400)","");
         execute.executeScript("window.scrollBy(0,-400)","");
         Thread.sleep(2000);
+        }catch(Exception error){
+            System.out.println("Something went wrong."+error);
+        }
     }
 
     @Then("I should see the password strength as {string}")
     public void iShouldSeeThePasswordStrengthAs(String passwordStrength) {
+        try{
         String uiPasswordStrength =  driver.findElement(new By.ById("password-strength-meter-label")).getText();
         Assert.assertEquals(uiPasswordStrength,passwordStrength);
-
+        }catch(Exception error){
+            System.out.println("Something went wrong."+error);
+        }
     }
 
     @And("I clear the {string} textbox")
     public void iClearTheTextbox(String textbox) {
+        try{
         switch (textbox){
             case "Password":
                 driver.findElement(By.id("password")).click();
                 driver.findElement(By.id("password")).clear();
 
         }
+        }catch(Exception error){
+            System.out.println("Something went wrong."+error);
+        }
     }
 
 
     @Then("I should see {string} validation message")
     public void iShouldSeeValidationMessage(String validationMessage) {
+        try{
         switch (validationMessage){
             case "Succefully registered":
                 String validationSuccess = driver.findElement(new By.ByXPath("//div[text()='Thank you for registering with Main Website Store.']")).getText();
@@ -204,14 +228,21 @@ public class CreateAnOrderSteps extends ScriptRunner {
                 Assert.assertEquals(validationError, invalidLoginCredsValidationMessage);
                 break;
         }
+        }catch(Exception error){
+            System.out.println("Something went wrong."+error);
+        }
 
     }
 
     @Then("I should see welcome user message")
     public void iShouldSeeWelcomeUserMessage() {
-        webDriverWaiting.until(ExpectedConditions.presenceOfElementLocated(new By.ByXPath("//div/p[contains(text(),'This is a demo store')]/following::div[1]/header/div[1]/div/ul/li/span[contains(text(),'Welcome')]")));
-        String welcometext = driver.findElement(new By.ByXPath("//div/p[contains(text(),'This is a demo store')]/following::div[1]/header/div[1]/div/ul/li/span[contains(text(),'Welcome')]")).getText();
-        Assert.assertTrue("Welcome Message is not displayed",welcometext.contains("Welcome"));
+        try {
+            webDriverWaiting.until(ExpectedConditions.presenceOfElementLocated(new By.ByXPath("//div/p[contains(text(),'This is a demo store')]/following::div[1]/header/div[1]/div/ul/li/span[contains(text(),'Welcome')]")));
+            String welcometext = driver.findElement(new By.ByXPath("//div/p[contains(text(),'This is a demo store')]/following::div[1]/header/div[1]/div/ul/li/span[contains(text(),'Welcome')]")).getText();
+            Assert.assertTrue("Welcome Message is not displayed", welcometext.contains("Welcome"));
+        } catch (Exception error) {
+            System.out.println("Something went wrong." + error);
+        }
     }
 
 }

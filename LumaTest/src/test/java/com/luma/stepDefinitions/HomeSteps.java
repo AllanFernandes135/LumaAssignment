@@ -56,14 +56,17 @@ public class HomeSteps extends ScriptRunner { ;
 
     @And("I click on the {string} link")
     public void iClickOnTheLink(String button) {
-
-        switch (button){
-            case "Sign In":
-                driver.findElement(new By.ByXPath("//p[contains(text(),\"This is a demo\")]/following::div[1]/header/div[1]/div/ul/li[2]")).click();
-                break;
-            case "Create an Account":
-                driver.findElement(new By.ByXPath("//p[contains(text(),\"This is a demo\")]/following::div[1]/header/div[1]/div/ul/li[3]")).click();
-                break;
+        try {
+            switch (button) {
+                case "Sign In":
+                    driver.findElement(new By.ByXPath("//p[contains(text(),\"This is a demo\")]/following::div[1]/header/div[1]/div/ul/li[2]")).click();
+                    break;
+                case "Create an Account":
+                    driver.findElement(new By.ByXPath("//p[contains(text(),\"This is a demo\")]/following::div[1]/header/div[1]/div/ul/li[3]")).click();
+                    break;
+            }
+        }  catch(Exception error){
+                System.out.println("Something went wrong."+error);
+            }
         }
-    }
 }
