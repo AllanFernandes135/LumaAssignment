@@ -1,24 +1,26 @@
 package com.luma.stepDefinitions;
 
+import com.luma.Utility.SetupClass;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import runner.ScriptRunner;
 
 import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
-public class HomeSteps extends ScriptRunner { ;
+
+public class HomeSteps { ;
     final String url = "https://magento.softwaretestingboard.com/";
+    WebDriver driver = SetupClass.driver;
 
     Duration wait = Duration.ofSeconds(10);
 
     WebDriverWait webDriverWaiting = new WebDriverWait(driver, wait);
+
 
     @When("I navigate to  luma home page")
     public void iNavigateToLumaHomePage() {

@@ -1,31 +1,21 @@
 package com.luma.stepDefinitions;
 
+import com.luma.Utility.SetupClass;
 import io.cucumber.java.en.And;
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
 import org.junit.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.BeforeTest;
-import runner.ScriptRunner;
 
-import javax.swing.*;
 import java.time.Duration;
 import java.util.HashMap;
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
 
-public class CreateAnOrderSteps extends ScriptRunner {
 
+public class CreateAnOrderSteps  {
+    WebDriver driver = SetupClass.driver;
+//    SetupClass setupClass = new SetupClass();
     final String expectedValidationMessage = "This is a required field.";
 
     final String difTypeOfCombinationValidationMessage ="Minimum of different classes of characters in password is 3. Classes of characters: Lower Case, Upper Case, Digits, Special Characters.";
@@ -46,7 +36,7 @@ public class CreateAnOrderSteps extends ScriptRunner {
 
     WebDriverWait webDriverWaiting = new WebDriverWait(driver, wait);
 
-    private HashMap<String,String > userDetails = new HashMap<>();
+
     @And("I click on the {string} button")
     public void iClickOnTheButton(String button) throws InterruptedException {
         try {
@@ -112,13 +102,11 @@ public class CreateAnOrderSteps extends ScriptRunner {
         switch (textbox){
             case "First Name":
                 driver.findElement(By.id("firstname")).click();
-                userDetails.put("FirstName",text);
                 driver.findElement(By.id("firstname")).sendKeys(text);
                 break;
             case "Last Name":
                 Thread.sleep(1000);
                 driver.findElement(By.id("lastname")).click();
-                userDetails.put("LastName",text);
                 driver.findElement(By.id("lastname")).sendKeys(text);
                 break;
             case "Email":
@@ -128,7 +116,6 @@ public class CreateAnOrderSteps extends ScriptRunner {
                     Random rand = new Random();
                     int randomNumber = rand.nextInt(999);
                     String email= text+"_"+randomNumber+"@gmail.com";
-                    userDetails.put("EmailAddress",email);
                     driver.findElement(By.id("email_address")).sendKeys(email);
 
                 }
@@ -244,5 +231,6 @@ public class CreateAnOrderSteps extends ScriptRunner {
             System.out.println("Something went wrong." + error);
         }
     }
+
 
 }
