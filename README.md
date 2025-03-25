@@ -16,6 +16,6 @@ To Run Project
 1) Install all the dependencies
 2) Build the project
 3) Create Custom TestNG runner and select the runner file 
-4)As per Script execution change the @tag in ScriptRunner file
+4) As per Script execution change the @tag in ScriptRunner file
 5) Execute the scripts
 6) Result is stored in folder ScriptResult
