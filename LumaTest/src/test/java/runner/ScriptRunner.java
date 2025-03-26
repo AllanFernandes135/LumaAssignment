@@ -23,10 +23,10 @@ import java.util.HashMap;
 
 @CucumberOptions(
         features = "target/test-classes/features",
-        tags ="@TestSignIn",
+        tags ="@TestEndToEnd",
         glue={"com.luma.Utility","com.luma.stepDefinitions"},
         plugin ={"com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"}
 )
 public class ScriptRunner  extends AbstractTestNGCucumberTests {
-    SetupClass  s = new SetupClass();
+
 }
