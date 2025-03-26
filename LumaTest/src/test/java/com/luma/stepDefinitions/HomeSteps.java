@@ -49,6 +49,9 @@ public class HomeSteps { ;
                 case "My Account":
                     webDriverWaiting.until(ExpectedConditions.presenceOfElementLocated(new By.ByXPath("//span[text()=\"My Account\"]")));
                     break;
+                default:
+                    System.out.println("UnImplemented Case");
+                    break;
             }
         }
         catch(Exception error){
@@ -65,6 +68,9 @@ public class HomeSteps { ;
                     break;
                 case "Create an Account":
                     driver.findElement(new By.ByXPath("//p[contains(text(),\"This is a demo\")]/following::div[1]/header/div[1]/div/ul/li[3]")).click();
+                    break;
+                default:
+                    System.out.println("UnImplemented Case");
                     break;
             }
         }  catch(Exception error){

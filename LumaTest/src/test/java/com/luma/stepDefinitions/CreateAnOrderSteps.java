@@ -48,6 +48,9 @@ public class CreateAnOrderSteps  {
                 case "Sign In":
                     driver.findElement(By.id("send2")).click();
                     break;
+                default:
+                    System.out.println("UnImplemented Case");
+                    break;
             }
         }catch(Exception error){
                 System.out.println("Something went wrong."+error);
@@ -88,6 +91,9 @@ public class CreateAnOrderSteps  {
                 break;
             case "Account already exists with current email":
                 webDriverWaiting.until(ExpectedConditions.presenceOfElementLocated(new By.ByXPath("//h1/span/following::div[1]//div[text()=contains(text(),'There is already an account with this email address.')]")));
+                break;
+            default:
+                System.out.println("UnImplemented Case");
                 break;
         }
         }catch(Exception error){
@@ -159,6 +165,9 @@ public class CreateAnOrderSteps  {
                     driver.findElement(By.id("pass")).sendKeys(text);
                 }
                 break;
+            default:
+                System.out.println("UnImplemented Case");
+                break;
         }
         }catch(Exception error){
             System.out.println("Something went wrong."+error);
@@ -193,7 +202,9 @@ public class CreateAnOrderSteps  {
             case "Password":
                 driver.findElement(By.id("password")).click();
                 driver.findElement(By.id("password")).clear();
-
+            default:
+                System.out.println("UnImplemented Case");
+                break;
         }
         }catch(Exception error){
             System.out.println("Something went wrong."+error);
@@ -213,6 +224,9 @@ public class CreateAnOrderSteps  {
                 webDriverWaiting.until(ExpectedConditions.presenceOfElementLocated(new By.ByXPath("//div[text()='The account sign-in was incorrect or your account is disabled temporarily. Please wait and try again later.']")));
                 String validationError = driver.findElement(new By.ByXPath("//div[text()=\"The account sign-in was incorrect or your account is disabled temporarily. Please wait and try again later.\"]")).getText();
                 Assert.assertEquals(validationError, invalidLoginCredsValidationMessage);
+                break;
+            default:
+                System.out.println("UnImplemented Case");
                 break;
         }
         }catch(Exception error){
